@@ -1,5 +1,5 @@
 <template>
-<button :class="`${muiClass}`" @mousedown="mousedown($event)" @mouseup="mouseup($event)">
+<button :class="`${muiClass}`" @mousedown="mousedown($event)" @mouseup="mouseup($event)" :disabled="disabled ? true : false">
     <slot></slot>
     <span class="mui-btn__ripple-container">
         <span class="mui-ripple" :style="{ width: width+'px', height: height+'px', left: left+'px', top: top+'px' }" :class="{'mui--is-visible': isAnimating, 'mui--is-animating': isAnimating}"></span>
@@ -27,6 +27,10 @@ export default class MuiButton extends Vue {
     height: number = 0;
     left: number = 0;
     top: number = 0;
+    @Prop({
+        default: false,
+        type: Boolean
+    }) disabled: boolean;
     @Prop({
         default: "primary",
         type: String,
