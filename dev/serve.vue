@@ -32,7 +32,7 @@ export default Vue.extend({
     <mui-panel>
       <h1>Buttons</h1>
       <mui-button>Click</mui-button>
-      <mui-button variant="flat" size="large" color="dark">Click2</mui-button>
+      <mui-button variant="raised" size="large" color="dark">Click2</mui-button>
     </mui-panel>
   </mui-container>
 </template>
