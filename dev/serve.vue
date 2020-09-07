@@ -3,19 +3,22 @@ import Vue from "vue";
 import { MuiAppbar } from "@/entry";
 import { MuiPanel } from "@/entry";
 import { MuiButton } from "@/entry";
+import { MuiContainer } from "@/entry";
  
 export default Vue.extend({
   name: "ServeDev",
   components: {
     MuiAppbar,
     MuiPanel,
-    MuiButton
+    MuiButton,
+    MuiContainer
   },
 });
 </script>
 
 <template>
-  <div id="app">
+
+    <mui-container fluid>
     <mui-panel>
     <mui-appbar>
       <table width="100%">
@@ -27,5 +30,6 @@ export default Vue.extend({
     </mui-appbar>
     <mui-button>Click</mui-button><mui-button variant="flat" size="large" color="dark">Click2</mui-button>
     </mui-panel>
-  </div>
+    </mui-container>
+
 </template>
