@@ -1,87 +1,90 @@
 <template>
-<button :class="`${muiClass}`" @mousedown="mousedown($event)" @mouseup="mouseup($event)" :disabled="disabled ? true : false">
+  <button
+    :class="`${muiClass}`"
+    @mousedown="mousedown($event)"
+    @mouseup="mouseup($event)"
+    :disabled="disabled ? true : false"
+  >
     <slot></slot>
     <span class="mui-btn__ripple-container">
-        <span class="mui-ripple" :style="{ width: width+'px', height: height+'px', left: left+'px', top: top+'px' }" :class="{'mui--is-visible': isAnimating, 'mui--is-animating': isAnimating}"></span>
+      <span
+        class="mui-ripple"
+        :style="styleObject"
+        :class="{'mui--is-visible': isAnimating, 'mui--is-animating': isAnimating}"
+      ></span>
     </span>
-</button>
+  </button>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
 import Component from "vue-class-component";
-import {
-    Prop
-} from "vue-property-decorator";
+import { Prop } from "vue-property-decorator";
 @Component
 export default class MuiButton extends Vue {
-    muiClass: string = "mui-btn";
-    isAnimating: boolean = false;
-    offsetWidth: number = 0;
-    offsetHeight: number = 0;
-    offsetTop: number = 0;
-    offsetLeft: number = 0;
-    radius: number = 0;
-    diameter: number = 0;
-    width: number = 0;
-    height: number = 0;
-    left: number = 0;
-    top: number = 0;
-    @Prop({
-        default: false,
-        type: Boolean
-    }) disabled: boolean;
-    @Prop({
-        default: "primary",
-        type: String,
-    })
-    color: string;
-    @Prop({
-        default: "flat",
-        type: String,
-    })
-    variant: string;
-    @Prop({
-        default: "",
-        type: String,
-    })
-    size: string;
+  muiClass: string = "mui-btn";
+  isAnimating: boolean = false;
+  styleObject = {
+    width: '',
+    height: '',
+    left: '',
+    top: '',
+  };
+  @Prop({
+    default: false,
+    type: Boolean,
+  })
+  disabled: boolean;
+  @Prop({
+    default: "primary",
+    type: String,
+  })
+  color: string;
+  @Prop({
+    default: "flat",
+    type: String,
+  })
+  variant: string;
+  @Prop({
+    default: "",
+    type: String,
+  })
+  size: string;
 
-    mounted() {
-        // add color and variant to class
-        this.muiClass =
-            this.muiClass + " mui-btn--" + this.color + " mui-btn--" + this.variant;
+  mounted() {
+    // add color and variant to class
+    this.muiClass =
+      this.muiClass + " mui-btn--" + this.color + " mui-btn--" + this.variant;
 
-        // add size to class
-        if (this.size) {
-            this.muiClass = this.muiClass + " mui-btn--" + this.size;
-        }
+    // add size to class
+    if (this.size) {
+      this.muiClass = this.muiClass + " mui-btn--" + this.size;
     }
+  }
 
-    mousedown(event: MouseEvent) {
-        const btn = < HTMLButtonElement > event.target;
-        this.offsetWidth = btn.offsetWidth;
-        this.offsetHeight = btn.offsetHeight;
-        this.offsetTop = btn.offsetTop;
-        this.offsetLeft = btn.offsetLeft;
-        this.radius = Math.sqrt(
-            this.offsetWidth * this.offsetWidth +
-            this.offsetHeight * this.offsetHeight
-        );
-        this.diameter = this.radius * 2;
+  mousedown(event: MouseEvent) {
+    var btn, offsetWidth, offsetHeight, offsetTop, offsetLeft, radius, diameter;
+    btn = <HTMLButtonElement>event.target;
+    offsetWidth = btn.offsetWidth;
+    offsetHeight = btn.offsetHeight;
+    offsetTop = btn.offsetTop;
+    offsetLeft = btn.offsetLeft;
+    radius = Math.sqrt(offsetWidth * offsetWidth + offsetHeight * offsetHeight);
+    diameter = radius * 2;
 
-        this.width = this.diameter;
-        this.height = this.diameter;
-        this.left = Math.round(event.pageX - this.offsetLeft - this.radius);
-        this.top = Math.round(event.pageY - this.offsetTop - this.radius);
+    this.styleObject.width = diameter + "px";
+    this.styleObject.height = diameter + "px";
+    this.styleObject.left =
+      Math.round(event.pageX - offsetLeft - radius) + "px";
+    this.styleObject.top = Math.round(event.pageY - offsetTop - radius) + "px";
 
-        this.isAnimating = true;
-    }
+    this.isAnimating = true;
+  }
 
-    mouseup(_event: MouseEvent) {
-        setTimeout(() => {
-            this.isAnimating = false;
-        }, 100);
-    }
+  mouseup(_event: MouseEvent) {
+    setTimeout(() => {
+      this.isAnimating = false;
+    }, 100);
+  }
 }
 </script>
