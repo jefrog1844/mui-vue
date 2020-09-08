@@ -6,6 +6,7 @@ import { MuiButton } from "@/entry";
 import { MuiContainer } from "@/entry";
 import { MuiRow } from "@/entry";
 import { MuiForm } from "@/entry";
+import { MuiDivider } from "@/entry";
 
 export default Vue.extend({
   name: "ServeDev",
@@ -15,7 +16,8 @@ export default Vue.extend({
     MuiButton,
     MuiContainer,
     MuiRow,
-    MuiForm
+    MuiForm,
+    MuiDivider
   },
 });
 </script>
@@ -41,6 +43,7 @@ export default Vue.extend({
     <mui-panel>
       <h1>Form</h1>
       <mui-form>this is a mui form</mui-form>
+      <mui-divider></mui-divider>
       <mui-form inline>this is an inline mui form</mui-form>
     </mui-panel>
   </mui-container>
