@@ -5,6 +5,7 @@ import { MuiPanel } from "@/entry";
 import { MuiButton } from "@/entry";
 import { MuiContainer } from "@/entry";
 import { MuiRow } from "@/entry";
+import { MuiForm } from "@/entry";
 
 export default Vue.extend({
   name: "ServeDev",
@@ -13,7 +14,8 @@ export default Vue.extend({
     MuiPanel,
     MuiButton,
     MuiContainer,
-    MuiRow
+    MuiRow,
+    MuiForm
   },
 });
 </script>
@@ -35,6 +37,11 @@ export default Vue.extend({
       <h1>Buttons</h1>
       <mui-button disabled>disabled</mui-button>
       <mui-button variant="raised" size="large" color="dark">Raised</mui-button>
+    </mui-panel>
+    <mui-panel>
+      <h1>Form</h1>
+      <mui-form>this is a mui form</mui-form>
+      <mui-form inline>this is an inline mui form</mui-form>
     </mui-panel>
   </mui-container>
 </template>

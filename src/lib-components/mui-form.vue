@@ -1,7 +1,7 @@
 <template>
-  <div :class="[fluid ? fluidClass : containerClass]">
+  <form :class="[formClass, inline ? inlineClass : '']">
     <slot></slot>
-  </div>
+  </form>
 </template>
 
 <script lang="ts">
@@ -10,13 +10,13 @@ import Component from "vue-class-component";
 import { Prop } from "vue-property-decorator";
 
 @Component
-export default class MuiContainer extends Vue {
-  containerClass: string = "mui-container";
-  fluidClass: string = "mui-container-fluid";
+export default class MuiForm extends Vue {
+  formClass: string = "mui-form";
+  inlineClass = "mui-form--inline";
   @Prop({
     default: false,
     type: Boolean,
   })
-  fluid: boolean;
+  inline: boolean;
 }
 </script>
