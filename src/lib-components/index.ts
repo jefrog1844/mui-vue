@@ -7,3 +7,4 @@ export { default as MuiRow } from './mui-row.vue';
 export { default as MuiForm } from './mui-form.vue';
 export { default as MuiDivider } from './mui-divider.vue';
 export { default as MuiCaret } from './mui-caret.vue';
+export { default as MuiInput } from './mui-input.vue';
